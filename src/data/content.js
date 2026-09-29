@@ -55,7 +55,7 @@ export const projects = [
       'A special place where the admin adds Mnadani alumni and their history.',
       'All content is stored in a database, so the site stays easy to keep up to date long after launch.',
     ],
-    link: 'https://github.com/MohammedMwamchua/mnadani-secondary-school',
+    githubLink: 'https://github.com/MohammedMwamchua/mnadani-secondary-school',
   },
   {
     id: 'panganasi',
@@ -69,7 +69,8 @@ export const projects = [
       'Customers send a rental request straight from the website — no phone tag needed to get started.',
       'Django handles the backend and PostgreSQL stores the data, so it holds up as listings grow.',
     ],
-    link: 'https://github.com/MohammedMwamchua/MKP',
+    liveLink: 'https://mkp-seven.vercel.app/',
+    githubLink: 'https://github.com/MohammedMwamchua/MKP',
   },
   {
     id: 'strokeguard',
@@ -85,7 +86,7 @@ export const projects = [
       'Reception, doctors, lab staff and admin each get their own screen, matching how the hospital actually divides the work.',
       'Doctors review and approve lifestyle advice before it is sent to the patient by SMS.',
     ],
-    link: 'https://github.com/MohammedMwamchua/StrokeRiskAssesment',
+    githubLink: 'https://github.com/MohammedMwamchua/StrokeRiskAssesment',
   },
 ]
 

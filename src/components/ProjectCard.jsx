@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, Globe2 } from 'lucide-react'
 import Reveal from './Reveal.jsx'
 
 export default function ProjectCard({ project, delay = 0 }) {
@@ -30,12 +30,19 @@ export default function ProjectCard({ project, delay = 0 }) {
               ))}
             </ul>
           </details>
-          {project.link && (
-            <p className="project-links">
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
-                View the code on GitHub <ExternalLink size={15} />
-              </a>
-            </p>
+          {(project.liveLink || project.githubLink) && (
+            <div className="project-links">
+              {project.liveLink && (
+                <a className="live-link" href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                  <Globe2 size={15} /> View live site
+                </a>
+              )}
+              {project.githubLink && (
+                <a className="code-link" href={project.githubLink} target="_blank" rel="noopener noreferrer">
+                  View the code on GitHub <ExternalLink size={15} />
+                </a>
+              )}
+            </div>
           )}
         </div>
       </div>
