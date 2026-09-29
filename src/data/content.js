@@ -1,6 +1,6 @@
 export const profile = {
   name: ['Mohamed', 'Haikali', 'Mwamchua'],
-  role: 'Web developer in Dar es Salaam, Tanzania',
+  role: 'Web and mobile developer in Dar es Salaam, Tanzania',
   email: 'mohamedmwamchua@gmail.com',
   phone: '+255654000873',
   phoneDisplay: '0654 000 873',
@@ -12,7 +12,6 @@ export const profile = {
 export const heroStats = [
   { value: '3', label: 'Projects shipped end-to-end' },
   { value: '2026', label: 'Computer Engineering degree' },
-  { value: '0.804', label: 'ROC AUC on a clinical ML model' },
 ]
 
 export const skills = [

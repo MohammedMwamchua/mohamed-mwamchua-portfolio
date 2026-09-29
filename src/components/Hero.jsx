@@ -26,15 +26,15 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
-        <p className="eyebrow hero-eyebrow">Web developer &middot; Dar es Salaam, TZ</p>
+        <p className="eyebrow hero-eyebrow">Web &amp; mobile developer &middot; Dar es Salaam, TZ</p>
         <h1>
           <span className="accent-line">Mohamed</span>
           <span className="accent-line">Haikali</span>
           <span className="accent-line grad">Mwamchua</span>
         </h1>
         <p className="lead">
-          I build <strong>websites, admin panels and apps</strong> with React, Django and
-          PostgreSQL &mdash; fast, clean, and easy for non-developers to run day to day.
+          I build <strong>websites, admin panels and mobile apps</strong> with React, Django,
+          PostgreSQL and Flutter &mdash; fast, clean, and easy for non-developers to run day to day.
         </p>
         <div className="hero-actions">
           <a className="btn btn-solid" href="#projects">
