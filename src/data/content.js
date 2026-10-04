@@ -1,73 +1,126 @@
+import {
+  siCplusplus,
+  siDjango,
+  siFastapi,
+  siFlutter,
+  siGit,
+  siJavascript,
+  siPostgresql,
+  siPython,
+  siReact,
+  siScikitlearn,
+  siSqlite,
+} from 'simple-icons'
+import daftariShot from '../assets/projects/daftari.png?w=640;960;1366&format=avif;webp;jpeg&as=picture'
+import mnadaniShot from '../assets/projects/mnadani.png?w=640;960;1280;1600&format=avif;webp;jpeg&as=picture'
+import panganasiShot from '../assets/projects/panganasi.jpg?w=640;960;1280;1600&format=avif;webp;jpeg&as=picture'
+import strokeRegister from '../assets/projects/strokeguard-register.jpg?w=270;540&format=avif;webp;jpeg&as=picture'
+import strokeAssessment from '../assets/projects/strokeguard-assessment.jpg?w=270;540&format=avif;webp;jpeg&as=picture'
+import strokeAdmin from '../assets/projects/strokeguard-admin.jpg?w=270;540&format=avif;webp;jpeg&as=picture'
+
 export const profile = {
-  name: ['Mohamed', 'Haikali', 'Mwamchua'],
-  role: 'Web and mobile developer in Dar es Salaam, Tanzania',
+  name: 'Mohamed Haikali Mwamchua',
+  shortName: 'Mohamed Mwamchua',
   email: 'mohamedmwamchua@gmail.com',
   phone: '+255654000873',
   phoneDisplay: '0654 000 873',
   whatsapp: '255654000873',
   github: 'MohammedMwamchua',
   location: 'Dar es Salaam, Tanzania',
+  cv: '/Mohamed-Mwamchua-CV.pdf',
 }
 
-export const heroStats = [
-  { value: '3', label: 'Projects shipped end-to-end' },
-  { value: '2026', label: 'Computer Engineering degree' },
-]
+const tech = {
+  react: { label: 'React', icon: siReact },
+  javascript: { label: 'JavaScript', icon: siJavascript },
+  django: { label: 'Django', icon: siDjango },
+  drf: { label: 'Django REST Framework', icon: siDjango },
+  fastapi: { label: 'FastAPI', icon: siFastapi },
+  python: { label: 'Python', icon: siPython },
+  postgresql: { label: 'PostgreSQL', icon: siPostgresql },
+  sqlite: { label: 'SQLite', icon: siSqlite },
+  flutter: { label: 'Flutter', icon: siFlutter },
+  sklearn: { label: 'scikit-learn', icon: siScikitlearn },
+  cpp: { label: 'C++', icon: siCplusplus },
+  csharp: { label: 'C#' },
+  git: { label: 'Git and GitHub', icon: siGit },
+}
+
+export const heroStack = [tech.react, tech.django, tech.postgresql, tech.flutter, tech.fastapi, tech.python]
 
 export const skills = [
-  { group: 'Front end', items: ['React', 'JavaScript'] },
-  { group: 'Back end', items: ['Django', 'FastAPI', 'Python'] },
-  { group: 'Databases', items: ['PostgreSQL', 'SQLite'] },
-  { group: 'Mobile', items: ['Flutter'] },
-  { group: 'Also use', items: ['C#', 'C++', 'Git and GitHub', 'Machine learning'] },
+  { group: 'Front end', items: [tech.react, tech.javascript] },
+  { group: 'Back end', items: [tech.django, tech.fastapi, tech.python] },
+  { group: 'Databases', items: [tech.postgresql, tech.sqlite] },
+  { group: 'Mobile', items: [tech.flutter] },
+  { group: 'Also use', items: [tech.sklearn, tech.cpp, tech.csharp, tech.git] },
 ]
 
 export const services = [
   {
     title: 'Websites for schools, businesses and listings',
-    desc: 'A fast, clean website that works well on phones and looks professional from day one. Panga Nasi, a live house-rental site people use across Tanzania, is proof it holds up outside a demo.',
+    desc: 'Websites that load quickly and work well on phones. Panga Nasi, a house-rental site, is one I built and deployed.',
   },
   {
     title: 'Admin panels and databases',
-    desc: "Update your own news, photos and listings without calling a developer every time. I build admin screens your team will actually use — like the one Mnadani Secondary School's staff now run day to day.",
+    desc: "Admin screens where your staff can update news, photos and listings themselves instead of calling a developer each time. Staff at Mnadani Secondary School use one to keep their school's website up to date.",
   },
   {
     title: 'Mobile apps',
-    desc: 'A Flutter app connected to a secure backend, built around how your team really works. I built one for hospitals with separate screens for reception, doctors and lab staff, plus automatic SMS updates.',
+    desc: 'Flutter apps with a backend behind them. For StrokeGuard, a hospital app, I built separate screens for reception, doctors and lab staff, and SMS messages that go to patients once a doctor approves them.',
   },
   {
-    title: 'Smart features with machine learning',
-    desc: "When it's worth it, I add machine learning that earns its place — like the stroke-risk model I trained on 68,611 patient records (0.804 ROC AUC) and turned into a tool doctors can actually explain and trust.",
+    title: 'Machine learning features',
+    desc: 'For StrokeGuard I trained a Random Forest on 68,611 patient records (0.804 ROC AUC) and combined it with stroke-specific rules, so doctors can see which risk factors raised each score.',
   },
 ]
 
 export const projects = [
   {
+    id: 'daftari',
+    title: 'Daftari',
+    kind: 'Bookkeeping web app',
+    desc: 'A bookkeeping app for a small Tanzanian food business with two sections: a chips stall (banda) and a restaurant (mgahawa). Each evening the manager records sales and expenses, counts the cash in each till and marks attendance.',
+    stack: [tech.react, tech.drf, tech.postgresql],
+    image: daftariShot,
+    imageAlt: "Daftari's home screen in Swahili, showing the day's sales split between the banda and the mgahawa, and the steps left to close the day",
+    details: [
+      'Records daily sales and expenses for the banda and the mgahawa, split between cash and mobile money.',
+      "Compares the cash counted in each till with what should be there. A shortage goes onto that day's cashier's account.",
+      'Works out salaries from attendance, advances and shortages, and profit for a month or a single day.',
+      'Month and day reports download as PDF or Excel.',
+      'The manager is the only one who logs in. Every screen is in Swahili and English, and it works on a phone.',
+    ],
+    githubLink: 'https://github.com/MohammedMwamchua/daftari',
+  },
+  {
     id: 'mnadani',
     title: 'Mnadani Secondary School website',
-    status: 'School website with admin panel',
-    badge: 'Completed',
-    desc: 'A full website for my old school, built so staff can add news, awards and photos themselves — no code, and no calling a developer for routine updates.',
-    chips: ['React', 'Django', 'SQLite'],
+    kind: 'School website with admin panel',
+    desc: "A website for my old secondary school. Staff add news, awards and photos themselves from an admin panel, so they don't need a developer for routine updates.",
+    stack: [tech.react, tech.django, tech.sqlite],
+    image: mnadaniShot,
+    imageAlt: 'The Mnadani Secondary School homepage, with the headline "Educating Dodoma\'s next generation, one class at a time" and a panel showing the school opened in 2007',
     details: [
-      'The admin adds and edits photos and explanations across the whole site.',
+      'The admin adds and edits photos and text across the whole site.',
       'Sections include news, awards, headteachers and notable teachers.',
-      'A special place where the admin adds Mnadani alumni and their history.',
-      'All content is stored in a database, so the site stays easy to keep up to date long after launch.',
+      'An alumni section where the admin adds former students and their stories.',
+      'Everything on the site comes from the database, so it can be updated without touching the code.',
     ],
     githubLink: 'https://github.com/MohammedMwamchua/mnadani-secondary-school',
   },
   {
     id: 'panganasi',
     title: 'Panga Nasi',
-    status: 'House rental website',
-    badge: 'Completed',
-    desc: 'A house-rental platform where people browse listings across Tanzania and send a request in a few taps. I built the whole thing myself, from the pages to the database.',
-    chips: ['React', 'Django', 'PostgreSQL'],
+    kind: 'House rental website',
+    desc: 'A house-rental website where people browse houses for rent across Tanzania and send a rental request. I built both the front end and the back end on my own.',
+    stack: [tech.react, tech.django, tech.postgresql],
+    image: panganasiShot,
+    imageAlt: 'The Panga Nasi homepage in Swahili, with the headline "Panga nyumba inayokufaa", a photo of a modern house, and a search bar for location and house type',
     details: [
       'Customers browse the houses that are available to rent.',
-      'Customers send a rental request straight from the website — no phone tag needed to get started.',
-      'Django handles the backend and PostgreSQL stores the data, so it holds up as listings grow.',
+      'Customers send a rental request from the website.',
+      'Django runs the backend and PostgreSQL stores the listings and requests.',
     ],
     liveLink: 'https://mkp-seven.vercel.app/',
     githubLink: 'https://github.com/MohammedMwamchua/MKP',
@@ -75,15 +128,19 @@ export const projects = [
   {
     id: 'strokeguard',
     title: 'StrokeGuard',
-    status: 'Hospital app',
-    badge: 'Completed',
-    desc: 'A full clinical tool for hospitals: staff register patients, get an explainable stroke-risk score, and send doctor-approved lifestyle advice by SMS — built around how a hospital team actually works.',
-    chips: ['FastAPI', 'Flutter', 'SQLite', 'Random Forest'],
+    kind: 'Hospital app',
+    desc: 'A hospital app for stroke screening. Staff register patients and get a stroke-risk score with the reasons behind it, and doctors approve lifestyle advice that is sent to the patient by SMS.',
+    stack: [tech.flutter, tech.fastapi, tech.sqlite, tech.sklearn],
+    screens: [
+      { image: strokeRegister, alt: 'StrokeGuard reception screen for registering a patient, with fields for name, age, phone number, height, weight and medical history' },
+      { image: strokeAssessment, alt: "StrokeGuard doctor's stroke assessment screen, showing blood pressure, glucose, cholesterol, BMI and heart rate, with switches for known conditions and lifestyle" },
+      { image: strokeAdmin, alt: 'StrokeGuard admin dashboard showing the number of patients, active staff, doctors, receptionists and lab scientists' },
+    ],
     details: [
       'Register patients and keep their records in one place.',
-      'Predict stroke risk with a Random Forest model trained on 68,611 records, scoring 0.804 ROC AUC.',
-      "A rule-based engine explains every score using 12 weighted risk factors, so it's never a black box doctors have to take on faith.",
-      'Reception, doctors, lab staff and admin each get their own screen, matching how the hospital actually divides the work.',
+      'A Random Forest trained on 68,611 patient records from a public cardiovascular dataset (0.804 ROC AUC) is blended 70/30 with stroke-specific rules, because no public dataset links stroke to all of these measurements.',
+      'A rule-based engine checks 12 stroke risk factors and shows which ones raised each score.',
+      'Reception, doctors, lab staff and admin each have their own screens.',
       'Doctors review and approve lifestyle advice before it is sent to the patient by SMS.',
     ],
     githubLink: 'https://github.com/MohammedMwamchua/StrokeRiskAssesment',
@@ -92,21 +149,21 @@ export const projects = [
 
 export const timeline = [
   {
-    year: '2019',
-    what: 'Finished secondary school',
-    where: 'Mnadani Secondary School, Dodoma',
+    year: '2026',
+    what: 'Bachelor of Computer Engineering',
+    where: 'Dar es Salaam Institute of Technology',
   },
   {
-    year: '2021',
+    year: '2025',
     what: 'IT support, field training',
-    where: 'Dodoma City Council',
-    detail: 'Routine IT support and troubleshooting across council offices — my first taste of keeping real office systems running.',
+    where: 'TANESCO, Dar es Salaam',
+    detail: 'Looked after computer systems and handled IT requests from different departments.',
   },
   {
-    year: '2022',
-    what: 'Started learning web and mobile development',
-    where: 'Field training at TANESCO, Dodoma',
-    detail: 'Supported daily IT operations while building the foundational programming skills everything since is built on.',
+    year: '2024',
+    what: 'Mobile application development, field training',
+    where: 'NSSF, Dar es Salaam',
+    detail: 'Built a demo mobile app during a full-stack training program, covering app design, connecting to a backend, and testing.',
   },
   {
     year: '2023',
@@ -114,20 +171,20 @@ export const timeline = [
     where: 'Mbeya University of Science and Technology',
   },
   {
-    year: '2024',
-    what: 'Mobile application development, field training',
-    where: 'NSSF, Dar es Salaam',
-    detail: 'Built a demo mobile app during a hands-on full-stack program, covering app design, backend integration and testing.',
+    year: '2022',
+    what: 'Started learning web and mobile development',
+    where: 'Field training at TANESCO, Dodoma',
+    detail: 'Helped with daily IT work while I learned the basics of programming.',
   },
   {
-    year: '2025',
+    year: '2021',
     what: 'IT support, field training',
-    where: 'TANESCO, Dar es Salaam',
-    detail: 'Maintained computer systems and resolved technical requests across departments for the national power utility.',
+    where: 'Dodoma City Council',
+    detail: 'Routine IT support and troubleshooting in council offices.',
   },
   {
-    year: '2026',
-    what: 'Bachelor of Computer Engineering',
-    where: 'Dar es Salaam Institute of Technology',
+    year: '2019',
+    what: 'Finished secondary school',
+    where: 'Mnadani Secondary School, Dodoma',
   },
 ]

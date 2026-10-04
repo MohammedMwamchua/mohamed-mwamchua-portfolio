@@ -1,19 +1,20 @@
-import Reveal from './Reveal.jsx'
 import ProjectCard from './ProjectCard.jsx'
 import { projects } from '../data/content.js'
 
 export default function Projects() {
   return (
-    <section className="section" id="projects">
+    <section className="section" id="work">
       <div className="wrap">
-        <Reveal>
-          <p className="eyebrow">03 / Projects</p>
-          <h2 className="section-title">Projects</h2>
-        </Reveal>
+        <header className="section-head reveal">
+          <h2 className="section-title">Selected work</h2>
+          <p className="section-intro">
+            Four projects I have built, from a school website to a hospital app.
+          </p>
+        </header>
 
         <div className="projects-list">
-          {projects.map((project, i) => (
-            <ProjectCard project={project} delay={i * 0.08} key={project.id} />
+          {projects.map((project) => (
+            <ProjectCard project={project} key={project.id} />
           ))}
         </div>
       </div>

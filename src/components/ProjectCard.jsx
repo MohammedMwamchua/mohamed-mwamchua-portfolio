@@ -1,51 +1,77 @@
-import { ExternalLink, Globe2 } from 'lucide-react'
-import Reveal from './Reveal.jsx'
+import { ArrowUpRight } from 'lucide-react'
+import { siGithub } from 'simple-icons'
+import BrandIcon from './BrandIcon.jsx'
+import Picture from './Picture.jsx'
 
-export default function ProjectCard({ project, delay = 0 }) {
+function ProjectMedia({ project }) {
+  if (project.image) {
+    return (
+      <div className="project-media">
+        <Picture
+          image={project.image}
+          alt={project.imageAlt}
+          sizes="(min-width: 1120px) 600px, (min-width: 900px) 52vw, calc(100vw - 2.5rem)"
+        />
+      </div>
+    )
+  }
+
   return (
-    <Reveal
-      as="article"
-      delay={delay}
-      className="glass project-card"
-      id={project.id}
-    >
-      <div className="project-grid">
-        <div className="project-header">
-          <h3>{project.title}</h3>
-          {project.badge && <span className="badge">{project.badge}</span>}
-          <p className="project-status">{project.status}</p>
-        </div>
-        <div>
-          <p className="project-desc">{project.desc}</p>
-          <div className="project-chips">
-            {project.chips.map((chip) => (
-              <span className="chip" key={chip}>{chip}</span>
+    <div className="project-media project-media-phones">
+      {project.screens.map((screen) => (
+        <Picture
+          key={screen.alt}
+          className="phone-shot"
+          image={screen.image}
+          alt={screen.alt}
+          sizes="(min-width: 1120px) 180px, (min-width: 900px) 15vw, 28vw"
+        />
+      ))}
+    </div>
+  )
+}
+
+export default function ProjectCard({ project }) {
+  return (
+    <article className="project reveal" id={project.id}>
+      <ProjectMedia project={project} />
+
+      <div className="project-body">
+        <p className="project-kind">{project.kind}</p>
+        <h3>{project.title}</h3>
+        <p className="project-desc">{project.desc}</p>
+
+        <ul className="tag-list" aria-label="Built with">
+          {project.stack.map((item) => (
+            <li className="tag" key={item.label}>
+              <BrandIcon icon={item.icon} size={14} />
+              {item.label}
+            </li>
+          ))}
+        </ul>
+
+        <details className="more">
+          <summary>What it can do</summary>
+          <ul>
+            {project.details.map((line) => (
+              <li key={line}>{line}</li>
             ))}
-          </div>
-          <details className="more">
-            <summary>What it can do</summary>
-            <ul>
-              {project.details.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </details>
-          {(project.liveLink || project.githubLink) && (
-            <div className="project-links">
-              {project.liveLink && (
-                <a className="live-link" href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                  <Globe2 size={15} /> View live site
-                </a>
-              )}
-              {project.githubLink && (
-                <a className="code-link" href={project.githubLink} target="_blank" rel="noopener noreferrer">
-                  View the code on GitHub <ExternalLink size={15} />
-                </a>
-              )}
-            </div>
+          </ul>
+        </details>
+
+        <div className="project-links">
+          {project.liveLink && (
+            <a className="text-link" href={project.liveLink} target="_blank" rel="noopener noreferrer">
+              Visit the live site <ArrowUpRight size={15} strokeWidth={1.75} />
+            </a>
+          )}
+          {project.githubLink && (
+            <a className="text-link text-link-quiet" href={project.githubLink} target="_blank" rel="noopener noreferrer">
+              <BrandIcon icon={siGithub} size={15} /> Code on GitHub
+            </a>
           )}
         </div>
       </div>
-    </Reveal>
+    </article>
   )
 }

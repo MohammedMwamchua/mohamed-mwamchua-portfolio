@@ -1,22 +1,27 @@
 import { useState } from 'react'
-import { Mail, Phone, MessageCircle, Copy, Check, Send } from 'lucide-react'
-import Reveal from './Reveal.jsx'
-import GithubMark from './icons/GithubMark.jsx'
+import { Check, Copy, Mail, Phone, Send } from 'lucide-react'
+import { siGithub, siWhatsapp } from 'simple-icons'
+import BrandIcon from './BrandIcon.jsx'
 import { profile } from '../data/content.js'
 
+const LucideMail = (props) => <Mail size={18} strokeWidth={1.6} {...props} />
+const LucidePhone = (props) => <Phone size={18} strokeWidth={1.6} {...props} />
+const WhatsAppMark = (props) => <BrandIcon icon={siWhatsapp} size={17} {...props} />
+const GitHubMark = (props) => <BrandIcon icon={siGithub} size={17} {...props} />
+
 const CONTACT_ITEMS = [
-  { label: 'Email', icon: Mail, href: `mailto:${profile.email}`, text: profile.email, copy: true },
-  { label: 'Phone', icon: Phone, href: `tel:${profile.phone}`, text: profile.phoneDisplay },
+  { label: 'Email', Icon: LucideMail, href: `mailto:${profile.email}`, text: profile.email, copy: true },
+  { label: 'Phone', Icon: LucidePhone, href: `tel:${profile.phone}`, text: profile.phoneDisplay },
   {
     label: 'WhatsApp',
-    icon: MessageCircle,
+    Icon: WhatsAppMark,
     href: `https://wa.me/${profile.whatsapp}`,
     text: 'Chat with me',
     external: true,
   },
   {
     label: 'GitHub',
-    icon: GithubMark,
+    Icon: GitHubMark,
     href: `https://github.com/${profile.github}`,
     text: `github.com/${profile.github}`,
     external: true,
@@ -69,60 +74,53 @@ export default function Contact() {
   }
 
   return (
-    <footer className="contact-section" id="contact">
-      <div className="wrap">
-        <Reveal className="glass glass-strong contact-panel">
-          <p className="eyebrow">05 / Contact</p>
-          <h2 className="contact-heading">Have a project or a job in mind? Let&apos;s talk.</h2>
+    <section className="section" id="contact">
+      <div className="wrap contact-grid">
+        <div className="reveal">
+          <h2 className="contact-heading">Have a project or a job in mind?</h2>
           <p className="contact-intro">Send me a message and I will reply as soon as I can.</p>
 
-          <div className="contact-grid">
-            <ul className="contact-list">
-              {CONTACT_ITEMS.map((item) => (
-                <li key={item.label}>
-                  <span className="contact-icon"><item.icon size={18} /></span>
-                  <span>
-                    <span className="label">{item.label}</span>
-                    <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>
-                      {item.text}
-                    </a>
-                    {item.copy && (
-                      <button className="copy-btn" type="button" onClick={handleCopy}>
-                        {copied ? <Check size={12} /> : <Copy size={12} />} {copied ? 'Copied' : 'Copy'}
-                      </button>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
+          <ul className="contact-list">
+            {CONTACT_ITEMS.map(({ label, Icon, href, text, copy, external }) => (
+              <li key={label}>
+                <span className="contact-icon"><Icon aria-hidden="true" /></span>
+                <span className="contact-text">
+                  <span className="contact-label">{label}</span>
+                  <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
+                    {text}
+                  </a>
+                </span>
+                {copy && (
+                  <button className="copy-btn" type="button" onClick={handleCopy} aria-label="Copy email address">
+                    {copied ? <Check size={13} /> : <Copy size={13} />} {copied ? 'Copied' : 'Copy'}
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-            <div className="msg-box">
-              <h3>Write me a message</h3>
-              <label className="field">
-                <span>Your name</span>
-                <input type="text" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} />
-              </label>
-              <label className="field">
-                <span>What do you need?</span>
-                <textarea value={msg} onChange={(e) => setMsg(e.target.value)} />
-              </label>
-              <div className="msg-actions">
-                <button className="btn btn-solid" type="button" onClick={handleSendMail}>
-                  Send by email <Send size={16} />
-                </button>
-                <button className="btn btn-ghost" type="button" onClick={handleSendWhatsApp}>
-                  Send on WhatsApp
-                </button>
-              </div>
-              <p className="note" role="status">{note}</p>
-            </div>
+        <form className="msg-box reveal" onSubmit={(e) => { e.preventDefault(); handleSendMail() }}>
+          <h3>Write me a message</h3>
+          <label className="field">
+            <span>Your name</span>
+            <input type="text" name="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} />
+          </label>
+          <label className="field">
+            <span>What do you need?</span>
+            <textarea name="message" value={msg} onChange={(e) => setMsg(e.target.value)} />
+          </label>
+          <div className="msg-actions">
+            <button className="btn btn-primary" type="submit">
+              Send by email <Send size={15} strokeWidth={1.75} />
+            </button>
+            <button className="btn btn-secondary" type="button" onClick={handleSendWhatsApp}>
+              <BrandIcon icon={siWhatsapp} size={15} /> Send on WhatsApp
+            </button>
           </div>
-
-          <p className="foot">
-            <span>Mohamed Haikali Mwamchua &middot; Dar es Salaam, Tanzania &middot; 2026</span>
-          </p>
-        </Reveal>
+          <p className="note" role="status">{note}</p>
+        </form>
       </div>
-    </footer>
+    </section>
   )
 }
