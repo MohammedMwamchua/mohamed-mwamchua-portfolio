@@ -1,5 +1,5 @@
 import { ArrowRight, FileDown } from 'lucide-react'
-import portrait from '../assets/portrait.jpg?w=360;535&format=avif;webp;jpeg&as=picture'
+import portrait from '../assets/portrait-flag.jpg?w=360;702&format=avif;webp;jpeg&as=picture'
 import Picture from './Picture.jsx'
 import BrandIcon from './BrandIcon.jsx'
 import { heroStack, profile } from '../data/content.js'
@@ -29,7 +29,7 @@ export default function Hero() {
         <figure className="hero-portrait">
           <Picture
             image={portrait}
-            alt="Mohamed Haikali Mwamchua in a white shirt and a dotted tie"
+            alt="Mohamed Haikali Mwamchua in a white shirt and dotted tie, holding a blue project report beside an Institute of Technology flag"
             sizes="(min-width: 960px) 360px, min(100vw - 2.5rem, 320px)"
             priority
           />
