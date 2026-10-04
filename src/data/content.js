@@ -17,8 +17,6 @@ import panganasiShot from '../assets/projects/panganasi.jpg?w=640;960;1280;1600&
 import strokeRegister from '../assets/projects/strokeguard-register.jpg?w=270;540&format=avif;webp;jpeg&as=picture'
 import strokeAssessment from '../assets/projects/strokeguard-assessment.jpg?w=270;540&format=avif;webp;jpeg&as=picture'
 import strokeAdmin from '../assets/projects/strokeguard-admin.jpg?w=270;540&format=avif;webp;jpeg&as=picture'
-import mnadaniMobile from '../assets/projects/mnadani-mobile.png?w=240;480&format=avif;webp;jpeg&as=picture'
-import daftariCloseDay from '../assets/projects/daftari-close-day.png?w=560;1120&format=avif;webp;jpeg&as=picture'
 
 export const profile = {
   name: 'Mohamed Haikali Mwamchua',
@@ -58,51 +56,22 @@ export const skills = [
   { group: 'Also use', items: [tech.sklearn, tech.cpp, tech.csharp, tech.git] },
 ]
 
-// Each service shows a screen from the project that proves it, in that project's colours.
 export const services = [
   {
     title: 'Websites for schools, businesses and listings',
-    desc: 'Websites that load quickly and work well on phones, like the Mnadani Secondary School site and Panga Nasi, a house-rental site I built and deployed.',
-    brand: 'mnadani',
-    link: { label: 'See the Mnadani website', href: '#mnadani' },
-    media: {
-      kind: 'phones',
-      screens: [{ image: mnadaniMobile, alt: 'The Mnadani Secondary School website on a phone' }],
-    },
+    desc: 'Websites that load quickly and work well on phones. Panga Nasi, a house-rental site, is one I built and deployed.',
   },
   {
     title: 'Admin panels and databases',
-    desc: 'Screens where staff keep their own content and records up to date instead of calling a developer. Mnadani\'s staff edit their school website this way, and in Daftari the manager closes each day with a cash count.',
-    brand: 'daftari',
-    link: { label: 'See Daftari', href: '#daftari' },
-    media: {
-      kind: 'desktop',
-      image: daftariCloseDay,
-      alt: "Daftari's cash count step, comparing the cash expected in each till with the amount counted and showing a shortage",
-    },
+    desc: "Admin screens where your staff can update news, photos and listings themselves instead of calling a developer each time. Staff at Mnadani Secondary School use one to keep their school's website up to date.",
   },
   {
     title: 'Mobile apps',
     desc: 'Flutter apps with a backend behind them. For StrokeGuard, a hospital app, I built separate screens for reception, doctors and lab staff, and SMS messages that go to patients once a doctor approves them.',
-    brand: 'strokeguard',
-    link: { label: 'See StrokeGuard', href: '#strokeguard' },
-    media: {
-      kind: 'phones',
-      screens: [
-        { image: strokeRegister, alt: 'StrokeGuard reception screen for registering a patient' },
-        { image: strokeAdmin, alt: 'StrokeGuard admin dashboard with staff and patient counts' },
-      ],
-    },
   },
   {
     title: 'Machine learning features',
     desc: 'For StrokeGuard I trained a Random Forest on 68,611 patient records (0.804 ROC AUC) and combined it with stroke-specific rules, so doctors can see which risk factors raised each score.',
-    brand: 'strokeguard',
-    link: { label: 'How the model works', href: '#strokeguard' },
-    media: {
-      kind: 'phones',
-      screens: [{ image: strokeAssessment, alt: "StrokeGuard's stroke assessment screen with the patient's blood pressure, glucose, cholesterol, BMI and heart rate" }],
-    },
   },
 ]
 
