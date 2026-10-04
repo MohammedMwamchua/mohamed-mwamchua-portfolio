@@ -33,7 +33,7 @@ function ProjectMedia({ project }) {
 
 export default function ProjectCard({ project }) {
   return (
-    <article className="project reveal" id={project.id}>
+    <article className="project reveal" id={project.id} data-brand={project.id}>
       <ProjectMedia project={project} />
 
       <div className="project-body">

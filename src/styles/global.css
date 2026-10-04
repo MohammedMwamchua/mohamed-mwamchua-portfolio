@@ -492,6 +492,22 @@
     align-self: start;
   }
 
+  /* ---- Project colours ----
+     One base colour per project, taken from that product's own design. The
+     panel tint and label colour are mixed with the page colours, so they
+     follow light and dark mode without a second palette. */
+  [data-brand] {
+    --brand-panel: color-mix(in oklab, var(--brand) var(--brand-tint, 14%), var(--bg));
+    --brand-line: color-mix(in oklab, var(--brand) 22%, var(--line));
+    --brand-ink: color-mix(in oklab, var(--brand) 72%, var(--ink));
+  }
+  /* Gold is light, so its text mixes in more ink to stay above 4.5:1 contrast. */
+  [data-brand="daftari"] { --brand: #c8962e; --brand-tint: 20%; --brand-ink: color-mix(in oklab, var(--brand) 60%, var(--ink)); }
+  [data-brand="mnadani"] { --brand: #2468ad; }
+  /* Panga Nasi's own site is deep forest green, so its panel stays dark in both themes. */
+  [data-brand="panganasi"] { --brand: #2f8a63; --brand-panel: #173b2d; --brand-line: #24503e; }
+  [data-brand="strokeguard"] { --brand: #13a077; }
+
   /* ---- Projects ---- */
   .projects-list {
     display: flex;
@@ -514,8 +530,8 @@
     padding-block-start: clamp(1.25rem, 3.5vw, 2.25rem);
     padding-inline-start: clamp(1.25rem, 3.5vw, 2.25rem);
     border-radius: var(--radius-lg);
-    border: 1px solid var(--line);
-    background: var(--panel);
+    border: 1px solid var(--brand-line, var(--line));
+    background: var(--brand-panel, var(--panel));
   }
   .project-media picture { block-size: 100%; }
   .project-media img {
@@ -551,7 +567,7 @@
 
   .project-kind {
     margin-block-end: 0.6rem;
-    color: var(--accent);
+    color: var(--brand-ink, var(--accent));
     font-size: 0.9rem;
     font-weight: 560;
   }
@@ -633,16 +649,54 @@
   .services-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: clamp(2rem, 5vw, 4rem);
+    gap: clamp(1rem, 2.5vw, 1.5rem);
   }
   .service {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+  /* A screen from the project behind each service, cut off by the bottom edge */
+  .service-media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    padding: clamp(1rem, 3vw, 1.75rem) clamp(1rem, 3vw, 1.75rem) 0;
+    border-bottom: 1px solid var(--brand-line, var(--line));
+    background: var(--brand-panel, var(--panel));
+  }
+  .service-media img {
+    inline-size: 100%;
+    block-size: auto;
+    border: 1px solid var(--line-strong);
+    box-shadow: var(--shadow-lg);
+  }
+  .service-media-phones {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.75rem, 2.5vw, 1.25rem);
+  }
+  .service-media-phones picture { flex: none; inline-size: min(36%, 11rem); }
+  .service-media-phones img { border-radius: clamp(12px, 2vw, 18px); }
+  .service-media-desktop { padding-inline-end: 0; }
+  .service-media-desktop img {
+    border-inline-end: 0;
+    border-start-start-radius: 10px;
+  }
+  .service-body {
     display: grid;
+    flex: 1;
     align-content: start;
     gap: 0.7rem;
-    padding-block: 2rem;
-    border-top: 1px solid var(--line-strong);
+    padding: clamp(1.25rem, 3vw, 1.75rem);
   }
-  .service-icon { color: var(--accent); }
+  .service .text-link {
+    justify-self: start;
+    margin-block-start: 0.3rem;
+    color: var(--brand-ink, var(--accent));
+  }
   .service h3 {
     font-size: 1.2rem;
     font-weight: 620;
@@ -901,7 +955,7 @@
 
   @media (forced-colors: active) {
     .btn, .icon-btn, .tag, .copy-btn { border-color: ButtonText; }
-    .project-media, .msg-box { border-color: CanvasText; }
+    .project-media, .msg-box, .service { border-color: CanvasText; }
   }
 }
 

@@ -1,7 +1,24 @@
-import { BrainCircuit, Globe, LayoutDashboard, Smartphone } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import Picture from './Picture.jsx'
 import { services } from '../data/content.js'
 
-const ICONS = [Globe, LayoutDashboard, Smartphone, BrainCircuit]
+function ServiceMedia({ media }) {
+  if (media.kind === 'desktop') {
+    return (
+      <div className="service-media service-media-desktop">
+        <Picture image={media.image} alt={media.alt} sizes="(min-width: 900px) 480px, calc(100vw - 4rem)" />
+      </div>
+    )
+  }
+
+  return (
+    <div className="service-media service-media-phones">
+      {media.screens.map((screen) => (
+        <Picture key={screen.alt} image={screen.image} alt={screen.alt} sizes="(min-width: 900px) 170px, 36vw" />
+      ))}
+    </div>
+  )
+}
 
 export default function Services() {
   return (
@@ -12,16 +29,18 @@ export default function Services() {
         </header>
 
         <ul className="services-grid">
-          {services.map((service, i) => {
-            const Icon = ICONS[i % ICONS.length]
-            return (
-              <li key={service.title} className="service reveal">
-                <Icon className="service-icon" size={20} strokeWidth={1.6} aria-hidden="true" />
+          {services.map((service) => (
+            <li key={service.title} className="service reveal" data-brand={service.brand}>
+              <ServiceMedia media={service.media} />
+              <div className="service-body">
                 <h3>{service.title}</h3>
                 <p>{service.desc}</p>
-              </li>
-            )
-          })}
+                <a className="text-link" href={service.link.href}>
+                  {service.link.label} <ArrowRight size={15} strokeWidth={1.75} />
+                </a>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
     </section>
