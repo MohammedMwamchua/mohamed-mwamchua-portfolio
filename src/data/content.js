@@ -1,17 +1,25 @@
 import {
   siCplusplus,
+  siCss,
   siDjango,
   siFastapi,
   siFlutter,
   siGit,
+  siI18next,
   siJavascript,
   siPostgresql,
+  siPwa,
   siPython,
   siReact,
   siScikitlearn,
   siSqlite,
+  siTailwindcss,
 } from 'simple-icons'
 import daftariShot from '../assets/projects/daftari.png?w=640;960;1366&format=avif;webp;jpeg&as=picture'
+import burgerTopiaShot from '../assets/projects/burgertopia.png?w=640;960;1280;1600&format=avif;webp;jpeg&as=picture'
+import dukaHome from '../assets/projects/duka-home.png?w=270;540&format=avif;webp;jpeg&as=picture'
+import dukaSales from '../assets/projects/duka-sales.png?w=270;540&format=avif;webp;jpeg&as=picture'
+import dukaProducts from '../assets/projects/duka-products.png?w=270;540&format=avif;webp;jpeg&as=picture'
 import mnadaniShot from '../assets/projects/mnadani.png?w=640;960;1280;1600&format=avif;webp;jpeg&as=picture'
 import panganasiShot from '../assets/projects/panganasi.jpg?w=640;960;1280;1600&format=avif;webp;jpeg&as=picture'
 import strokeRegister from '../assets/projects/strokeguard-register.jpg?w=270;540&format=avif;webp;jpeg&as=picture'
@@ -33,6 +41,11 @@ export const profile = {
 const tech = {
   react: { label: 'React', icon: siReact },
   javascript: { label: 'JavaScript', icon: siJavascript },
+  css: { label: 'CSS', icon: siCss },
+  tailwind: { label: 'Tailwind CSS', icon: siTailwindcss },
+  pwa: { label: 'PWA (works offline)', icon: siPwa },
+  dexie: { label: 'Dexie.js (IndexedDB)' },
+  i18next: { label: 'i18next', icon: siI18next },
   django: { label: 'Django', icon: siDjango },
   drf: { label: 'Django REST Framework', icon: siDjango },
   fastapi: { label: 'FastAPI', icon: siFastapi },
@@ -94,6 +107,23 @@ export const projects = [
     githubLink: 'https://github.com/MohammedMwamchua/daftari',
   },
   {
+    id: 'burgertopia',
+    title: 'Burger Topia',
+    kind: 'Restaurant ordering website',
+    desc: 'A website for Burger Topia, a halal burger restaurant with two branches in Dar es Salaam. Customers browse the menu, choose a sauce for each burger, and send their order to the nearest branch on WhatsApp.',
+    stack: [tech.react, tech.javascript, tech.css],
+    image: burgerTopiaShot,
+    imageAlt: 'The Burger Topia homepage, with the headline "Every Burger has a Story", an Order Now button, and a photo of a burger with sauce splashing around it',
+    details: [
+      'The full menu of burgers, combos, wings, fries, drinks and shakes. Each burger comes with a choice of three house sauces.',
+      'A cart that works out the total, including the delivery fee for the area the customer chooses.',
+      'The order goes to the chosen branch as a ready-written WhatsApp message with the items, total, address and payment method.',
+      'Customers can share their location from their phone, so the rider gets a Google Maps link.',
+      'Each branch shows whether it is open right now, using its opening hours in Dar es Salaam time.',
+      'The menu, prices, branches and delivery fees all live in one file, so they can be changed in one place.',
+    ],
+  },
+  {
     id: 'mnadani',
     title: 'Mnadani Secondary School website',
     kind: 'School website with admin panel',
@@ -144,6 +174,26 @@ export const projects = [
       'Doctors review and approve lifestyle advice before it is sent to the patient by SMS.',
     ],
     githubLink: 'https://github.com/MohammedMwamchua/StrokeRiskAssesment',
+  },
+  {
+    id: 'duka',
+    title: 'Duka',
+    kind: 'Shop inventory app, in progress',
+    desc: 'An inventory app for small shops in Tanzania. It runs on a phone and is built to keep working when the internet or power goes off, then send its records to the server once the connection is back.',
+    stack: [tech.react, tech.tailwind, tech.pwa, tech.dexie],
+    screens: [
+      { image: dukaHome, alt: "Duka's home screen in Swahili, showing today's sales and profit, debts owed to the shop, quick buttons to sell or add stock, and a list of items running low" },
+      { image: dukaSales, alt: "Duka's sales screen in Swahili, with a product search, category filters, a grid of products with prices and stock, and a cart holding four items" },
+      { image: dukaProducts, alt: "Duka's products screen in Swahili, listing each product with its price, category and stock level, with low-stock items in red and expiry warnings" },
+    ],
+    details: [
+      'Tracks stock, sales, customer debts and profit in TSh, with cash and mobile money (M-Pesa, Tigo Pesa, Airtel Money and HaloPesa).',
+      'Stock is never edited directly. Every sale, purchase and breakage is saved as a stock movement, so the owner can see who changed what and when.',
+      'Saves everything on the phone first and shows how many records are still waiting to sync.',
+      'Each product has a retail and a wholesale price, and the home screen warns about low stock and items close to expiry.',
+      'Swahili and English, switched with one button.',
+      'Done so far: a clickable design of every screen and the first React screens. Next come sales, reports, a Django backend and sync.',
+    ],
   },
 ]
 

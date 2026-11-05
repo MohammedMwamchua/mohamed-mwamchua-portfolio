@@ -59,18 +59,20 @@ export default function ProjectCard({ project }) {
           </ul>
         </details>
 
-        <div className="project-links">
-          {project.liveLink && (
-            <a className="text-link" href={project.liveLink} target="_blank" rel="noopener noreferrer">
-              Visit the live site <ArrowUpRight size={15} strokeWidth={1.75} />
-            </a>
-          )}
-          {project.githubLink && (
-            <a className="text-link text-link-quiet" href={project.githubLink} target="_blank" rel="noopener noreferrer">
-              <BrandIcon icon={siGithub} size={15} /> Code on GitHub
-            </a>
-          )}
-        </div>
+        {(project.liveLink || project.githubLink) && (
+          <div className="project-links">
+            {project.liveLink && (
+              <a className="text-link" href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                Visit the live site <ArrowUpRight size={15} strokeWidth={1.75} />
+              </a>
+            )}
+            {project.githubLink && (
+              <a className="text-link text-link-quiet" href={project.githubLink} target="_blank" rel="noopener noreferrer">
+                <BrandIcon icon={siGithub} size={15} /> Code on GitHub
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </article>
   )

@@ -8,7 +8,7 @@ export default function Projects() {
         <header className="section-head reveal">
           <h2 className="section-title">Selected work</h2>
           <p className="section-intro">
-            Four projects I have built, from a school website to a hospital app.
+            Projects I have built for schools, small businesses and a hospital.
           </p>
         </header>
 
