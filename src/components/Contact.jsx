@@ -74,9 +74,9 @@ export default function Contact() {
   }
 
   return (
-    <section className="section" id="contact">
+    <section className="section section-brand" id="contact">
       <div className="wrap contact-grid">
-        <div className="reveal">
+        <div className="reveal on-brand">
           <h2 className="contact-heading">Have a project or a job in mind?</h2>
           <p className="contact-intro">Send me a message and I will reply as soon as I can.</p>
 

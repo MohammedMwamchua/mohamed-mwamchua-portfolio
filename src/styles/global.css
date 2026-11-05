@@ -31,30 +31,42 @@
 /* ============================= TOKENS ============================= */
 @layer tokens {
   :root {
-    /* Tier 1: literal colours */
-    --raw-bg-light: #f7f7f5;
-    --raw-bg-alt-light: #f0f0ec;
-    --raw-surface-light: #ffffff;
-    --raw-panel-light: #e8e8e3;
-    --raw-ink-light: #14161b;
-    --raw-ink-2-light: #3b3f48;
-    --raw-muted-light: #61666f;
-    --raw-line-light: #e1e1dc;
-    --raw-line-strong-light: #cdcdc7;
-    --raw-accent-light: #1f4fd1;
-    --raw-shadow-light: 24 28 36;
+    /* Tier 1: literal colours.
+       Brand: olive #686053 on off-white #f8f8f8. The neutrals are warmed to match. */
+    --raw-brand: #686053;
+    --raw-brand-deep: #4a443a;
+    --raw-on-brand: #f8f8f8;
 
-    --raw-bg-dark: #0c0d10;
-    --raw-bg-alt-dark: #111216;
-    --raw-surface-dark: #15171b;
-    --raw-panel-dark: #1b1d22;
-    --raw-ink-dark: #ececee;
-    --raw-ink-2-dark: #c2c4ca;
-    --raw-muted-dark: #8f949f;
-    --raw-line-dark: #24262c;
-    --raw-line-strong-dark: #33363d;
-    --raw-accent-dark: #8aabff;
+    --raw-bg-light: #f8f8f8;
+    --raw-bg-alt-light: #efeee9;
+    --raw-surface-light: #ffffff;
+    --raw-panel-light: #e6e3db;
+    --raw-ink-light: #1f1d19;
+    --raw-ink-2-light: #46433c;
+    --raw-muted-light: #6a6863;
+    --raw-line-light: #e2e0da;
+    --raw-line-strong-light: #cdc9bf;
+    --raw-accent-light: #686053;
+    --raw-brand-hover-light: #575044;
+    --raw-shadow-light: 52 46 36;
+
+    --raw-bg-dark: #12110e;
+    --raw-bg-alt-dark: #181713;
+    --raw-surface-dark: #1d1c18;
+    --raw-panel-dark: #24221d;
+    --raw-ink-dark: #f8f8f8;
+    --raw-ink-2-dark: #d3d0c8;
+    --raw-muted-dark: #a19c91;
+    --raw-line-dark: #2a2823;
+    --raw-line-strong-dark: #3a3731;
+    --raw-accent-dark: #c3b9a5;
+    --raw-brand-hover-dark: #776e60;
     --raw-shadow-dark: 0 0 0;
+
+    /* Brand fills look the same in both themes; only the hover shifts */
+    --brand: var(--raw-brand);
+    --brand-deep: var(--raw-brand-deep);
+    --on-brand: var(--raw-on-brand);
 
     /* Tier 2: semantic colours (light by default) */
     --bg: var(--raw-bg-light);
@@ -67,6 +79,7 @@
     --line: var(--raw-line-light);
     --line-strong: var(--raw-line-strong-light);
     --accent: var(--raw-accent-light);
+    --brand-hover: var(--raw-brand-hover-light);
     --shadow-rgb: var(--raw-shadow-light);
 
     color-scheme: light dark;
@@ -85,6 +98,7 @@
       --line: var(--raw-line-dark);
       --line-strong: var(--raw-line-strong-dark);
       --accent: var(--raw-accent-dark);
+      --brand-hover: var(--raw-brand-hover-dark);
       --shadow-rgb: var(--raw-shadow-dark);
     }
   }
@@ -101,10 +115,24 @@
     --line: var(--raw-line-dark);
     --line-strong: var(--raw-line-strong-dark);
     --accent: var(--raw-accent-dark);
+    --brand-hover: var(--raw-brand-hover-dark);
     --shadow-rgb: var(--raw-shadow-dark);
   }
 
   :root[data-theme="light"] { color-scheme: light; }
+
+  /* Light-on-olive tokens for content placed on a brand-coloured band.
+     Components keep reading the same tokens, so they recolour themselves. */
+  .on-brand {
+    --ink: var(--on-brand);
+    --ink-2: #ebe9e4;
+    --muted: #e0ddd6;
+    --line: rgb(248 248 248 / 0.2);
+    --line-strong: rgb(248 248 248 / 0.38);
+    --surface: rgb(248 248 248 / 0.1);
+    --accent: #ffffff;
+    color: var(--ink);
+  }
 
   :root {
     /* Tier 3: UI tokens */
@@ -201,8 +229,8 @@
     z-index: 100;
     padding: 0.6rem 1rem;
     border-radius: var(--radius-sm);
-    background: var(--ink);
-    color: var(--bg);
+    background: var(--brand);
+    color: var(--on-brand);
     font-weight: 560;
     text-decoration: none;
     translate: 0 -200%;
@@ -224,13 +252,26 @@
     line-height: 1.2;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+    transition:
+      background-color 0.15s var(--ease),
+      border-color 0.15s var(--ease),
+      color 0.15s var(--ease),
+      box-shadow 0.2s var(--ease),
+      translate 0.2s var(--ease);
   }
   .btn-primary {
-    background: var(--ink);
-    color: var(--bg);
+    background: var(--brand);
+    color: var(--on-brand);
+    box-shadow: 0 10px 24px -12px rgb(104 96 83 / 0.75);
   }
-  .btn-primary:hover { background: color-mix(in oklab, var(--ink) 84%, var(--bg)); }
+  .btn-primary:hover {
+    background: var(--brand-hover);
+    box-shadow: 0 14px 28px -12px rgb(104 96 83 / 0.85);
+    translate: 0 -1px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary:hover { translate: none; }
+  }
   .btn-secondary {
     background: var(--surface);
     color: var(--ink);
@@ -312,12 +353,24 @@
     min-block-size: var(--nav-h);
   }
   .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     margin-inline-end: auto;
     font-size: 1.02rem;
     font-weight: 650;
     font-stretch: 106%;
     letter-spacing: -0.01em;
     text-decoration: none;
+  }
+  .brand::before {
+    content: "";
+    inline-size: 0.7rem;
+    block-size: 0.7rem;
+    flex: none;
+    border-radius: 3px;
+    background: var(--brand);
+    rotate: 45deg;
   }
   .nav-desktop { display: flex; gap: 0.15rem; }
   .nav-link {
@@ -331,8 +384,8 @@
   }
   .nav-link:hover { color: var(--ink); }
   .nav-link[aria-current="true"] {
-    color: var(--ink);
-    background: color-mix(in oklab, var(--ink) 6%, transparent);
+    color: var(--accent);
+    background: color-mix(in oklab, var(--brand) 14%, transparent);
   }
   .topbar-actions { display: flex; align-items: center; gap: 0.5rem; }
   .menu-btn { display: none; }
@@ -380,11 +433,23 @@
     gap: clamp(2.5rem, 6vw, 5rem);
   }
   .hero-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     margin-block-end: 1.25rem;
-    color: var(--muted);
+    color: var(--accent);
     font-size: 0.98rem;
-    font-weight: 500;
+    font-weight: 560;
   }
+  .hero-kicker::before {
+    content: "";
+    inline-size: 2rem;
+    block-size: 2px;
+    flex: none;
+    border-radius: 2px;
+    background: currentColor;
+  }
+  .hero-name-accent { color: var(--accent); }
   .hero h1 {
     font-size: clamp(2.5rem, 1.3rem + 4vw, 4.25rem);
     font-weight: 680;
@@ -418,7 +483,10 @@
     border-radius: var(--radius-lg);
     border: 1px solid var(--line);
     background: var(--panel);
-    box-shadow: var(--shadow-md);
+    /* A solid olive card offset behind the photo */
+    box-shadow:
+      clamp(10px, 1.6vw, 18px) clamp(10px, 1.6vw, 18px) 0 0 var(--brand),
+      var(--shadow-md);
   }
   .hero-portrait picture,
   .hero-portrait img {
@@ -457,7 +525,7 @@
     font-size: 0.95rem;
     font-weight: 560;
   }
-  .stack-list svg { color: var(--ink); }
+  .stack-list svg { color: var(--accent); }
 
   /* ---- Sections ---- */
   .section { padding-block: clamp(4.5rem, 10vw, 7.5rem); }
@@ -515,7 +583,10 @@
     padding-inline-start: clamp(1.25rem, 3.5vw, 2.25rem);
     border-radius: var(--radius-lg);
     border: 1px solid var(--line);
-    background: var(--panel);
+    /* Olive wash behind each screenshot */
+    background:
+      radial-gradient(120% 90% at 100% 100%, color-mix(in oklab, var(--brand) 38%, transparent), transparent 70%),
+      linear-gradient(140deg, var(--panel), color-mix(in oklab, var(--brand) 16%, var(--panel)));
   }
   .project-media picture { block-size: 100%; }
   .project-media img {
@@ -618,7 +689,7 @@
     inline-size: 5px;
     block-size: 5px;
     border-radius: 50%;
-    background: var(--muted);
+    background: var(--accent);
   }
 
   .project-links {
@@ -642,7 +713,13 @@
     padding-block: 2rem;
     border-top: 1px solid var(--line-strong);
   }
-  .service-icon { color: var(--accent); }
+  .service-icon {
+    box-sizing: content-box;
+    padding: 0.6rem;
+    border-radius: var(--radius);
+    background: var(--brand);
+    color: var(--on-brand);
+  }
   .service h3 {
     font-size: 1.2rem;
     font-weight: 620;
@@ -699,9 +776,10 @@
   }
   .timeline-year {
     padding-block-start: 0.1rem;
-    color: var(--muted);
+    color: var(--accent);
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
   }
   .timeline-what { font-weight: 600; }
   .timeline-where {
@@ -715,7 +793,19 @@
     font-size: 0.95rem;
   }
 
-  /* ---- Contact ---- */
+  /* ---- Contact: an olive band to close the page ---- */
+  .section-brand {
+    background:
+      radial-gradient(90% 120% at 0% 0%, rgb(255 255 255 / 0.09), transparent 60%),
+      radial-gradient(80% 110% at 100% 100%, rgb(0 0 0 / 0.16), transparent 60%),
+      var(--brand);
+  }
+  .section-brand .msg-box {
+    border-color: transparent;
+    box-shadow: 0 32px 64px -30px rgb(0 0 0 / 0.5);
+  }
+  .on-brand .contact-text a:hover { text-decoration: underline; }
+
   .contact-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -846,7 +936,7 @@
   /* ---- Footer ---- */
   .site-footer {
     padding-block: 1.75rem;
-    border-top: 1px solid var(--line);
+    background: var(--brand-deep);
     color: var(--muted);
     font-size: 0.9rem;
   }

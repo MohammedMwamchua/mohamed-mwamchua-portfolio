@@ -4,13 +4,20 @@ import Picture from './Picture.jsx'
 import BrandIcon from './BrandIcon.jsx'
 import { heroStack, profile } from '../data/content.js'
 
+// The surname is set in the brand colour.
+const nameParts = profile.name.split(' ')
+const surname = nameParts.pop()
+const givenNames = nameParts.join(' ')
+
 export default function Hero() {
   return (
     <section className="hero" id="top" aria-label="Introduction">
       <div className="wrap hero-grid">
         <div className="hero-copy">
           <p className="hero-kicker">Web and mobile developer in {profile.location}</p>
-          <h1>{profile.name}</h1>
+          <h1>
+            {givenNames} <span className="hero-name-accent">{surname}</span>
+          </h1>
           <p className="lead">
             I build websites, admin panels and mobile apps with React, Django, PostgreSQL and
             Flutter, for schools, small businesses and hospitals in Tanzania.

@@ -3,7 +3,7 @@ import { profile } from '../data/content.js'
 
 export default function Footer() {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer on-brand">
       <div className="wrap footer-inner">
         <p>&copy; 2026 {profile.name}. {profile.location}.</p>
         <a className="text-link text-link-quiet" href="#top">
